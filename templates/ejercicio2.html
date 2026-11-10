@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2 - Formulario de Nombres</title>
+    <link rel="stylesheet" href="/static/css/estilos.css">
+</head>
+<body>
+   <div class="container">
+       <h1>Formulario de Nombres</h1>
+       <form action="/ejercicio2" method="POST" autocomplete="off">
+           <label for="nombre1">Nombre 1:</label>
+           <input type="text" id="nombre1" name="nombre1" required>
+           <br>
+           <label for="nombre2">Nombre 2:</label>
+           <input type="text" id="nombre2" name="nombre2" required>
+           <br>
+           <label for="nombre3">Nombre 3:</label>
+           <input type="text" id="nombre3" name="nombre3" required>
+           <br>
+           <button type="submit">Enviar</button>
+       </form>
+
+       <a href="/" class="btn-volver">Volver al Menú Principal</a>
+
+       {% if mas_largo %}
+       <div id="resultado">
+           <p>El nombre con mayor cantidad de caracteres es: {{ mas_largo }}</p>
+           <p>El nombre tiene: {{ longitud }} caracteres</p>
+       </div>
+       {% endif %}
+   </div>
+
+   <script>
+     window.addEventListener('pageshow', function (event) {
+       var nav = performance.getEntriesByType("navigation")[0];
+       if (event.persisted || (nav && nav.type === "back_forward")) {
+         document.querySelector('form').reset();
+         var res = document.getElementById('resultado');
+         if (res) res.style.display = 'none';
+       }
+     });
+   </script>
+</body>
+</html>
